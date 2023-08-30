@@ -60,7 +60,7 @@ const SidebarGroups = () => {
                         onClick={() => handleSelectGroup(group.groupId)}
                     
                     >
-                        {selectedGroupId === group.groupId ? <div className="sidebar-selected w-2 h-6 bg-slate-100 right-12 relative rounded-r-3xl"></div> : (<></>) }
+                        {selectedGroupId === group.groupId ? <div className="sidebar-selected w-2 h-6 bg-slate-100 right-11 relative rounded-r-3xl"></div> : (<></>) }
                         { url ? 
 
                             (<img 

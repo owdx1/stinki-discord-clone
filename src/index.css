@@ -17,22 +17,24 @@
     rounded-3xl
     transition-all
     cursor-pointer
+    
   }
   .sidebar-icon-friends {
-    @apply relative flex items-center justify-center
-    h-10 w-10
+    @apply relative flex items-center
+    h-10 
     my-auto
     mt-6
     mb-6
     ml-8
+    mr-4
+    pr-4
     shadow-lg
-    text-green-100
-    hover:bg-green-300
-    hover:rounded-xl
-    bg-gray-600
-    rounded-3xl
+    hover:rounded-2xl
+    bg-gray-700
+    justify-between
     transition-all
     cursor-pointer
+    hover:bg-gray-500
   }
 
   .sidebar-tooltip {
@@ -62,13 +64,12 @@
     min-w-max
     left-20
     rounded-md
-    shadow-md
     text-white
-   
     text-lg
     transition-all
     duration-100
     origin-left
+    font-light
     
   }
 

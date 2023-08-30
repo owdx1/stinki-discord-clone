@@ -55,7 +55,7 @@ const SidebarFriends = () => {
 
     return (
 
-        <div className='fixed top-0 left-24 bg-gray-700 w-64 flex flex-col shadow-2xl text-white h-screen'>
+        <div className='fixed top-0 left-24 bg-gray-700 w-72 flex flex-col shadow-2xl text-white h-screen'>
             <div className="siderba-name  font-extralight text-gray-50 w-full h-4 mt-3">
                 <p className='text-center justify-center m-auto'>Friends
                 </p>
@@ -71,7 +71,7 @@ const SidebarFriends = () => {
                         onClick={() => handleSelectFriend(friend.userId)}
                     
                     >
-                        {selectedFriendId === friend.userId ? <div className="sidebar-selected w-2 h-6 bg-slate-100 right-12 relative rounded-r-3xl"></div> : (<></>) }
+                        {selectedFriendId === friend.userId ? <div className="sidebar-selected w-2 h-6 bg-slate-100 right-8 relative rounded-r-3xl"></div> : (<></>) }
                         { url ? 
 
                             (<img 
@@ -99,7 +99,7 @@ const SidebarFriends = () => {
                         className="w-20 h-20 rounded-full object-cover hover:rounded-xl"
                     />
                     <div className="text-white">
-                        <span className="text-lg">
+                        <span className="text-lg border-none">
                             {user.userName}#{user.userId}
                         </span>
                     </div>
