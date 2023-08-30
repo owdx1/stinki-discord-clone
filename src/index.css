@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sidebar-icon {
+    @apply relative flex items-center justify-center
+    h-16 w-16
+    mx-auto
+    mt-6
+    mb-6
+    shadow-lg
+    text-green-100
+    hover:bg-green-300
+    hover:rounded-xl
+    bg-gray-600
+    rounded-3xl
+    transition-all
+    cursor-pointer
+  }
+  .sidebar-icon-friends {
+    @apply relative flex items-center justify-center
+    h-10 w-10
+    my-auto
+    mt-6
+    mb-6
+    ml-8
+    shadow-lg
+    text-green-100
+    hover:bg-green-300
+    hover:rounded-xl
+    bg-gray-600
+    rounded-3xl
+    transition-all
+    cursor-pointer
+  }
+
+  .sidebar-tooltip {
+    @apply
+    absolute
+    w-auto
+    p-2
+    m-2
+    min-w-max
+    left-20
+    rounded-md
+    shadow-md
+    text-white
+    bg-gray-900
+    text-lg
+    transition-all
+    duration-100
+    origin-left
+    scale-0
+  }
+  .sidebar-tooltip-friends {
+    @apply
+    absolute
+    w-auto
+    p-2
+    m-2
+    min-w-max
+    left-20
+    rounded-md
+    shadow-md
+    text-white
+   
+    text-lg
+    transition-all
+    duration-100
+    origin-left
+    
+  }
+
+  .splitter {
+    @apply
+    text-cyan-500
+    m-0
+    p-0
+    
+  }
+  .friends-main{
+    @apply left-6
+  
+  }
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
