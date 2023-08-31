@@ -188,11 +188,10 @@ const allUsers = [
   }
 ]
 
-
 function App() {
   const [selectedFriendId, setSelectedFriendId] = useState(null);
   const [selectedGroupId, setSelectedGroupId] = useState(null);
-  const [selectedGroup , setSelectedGroup] = useState({});
+  const [selectedGroup , setSelectedGroup] = useState(groups[0]);
   const [selectedFriend, setSelectedFriend] = useState({});
   const [selectedChannelId, setSelectedChannelId] = useState(0);
   const [selectedChannel , setSelectedChannel] = useState("");
@@ -259,7 +258,7 @@ function App() {
         <div className='w-64 fixed top-0 left-96 bg-zinc-600 h-full text-white'>
           
 
-          {selectedFriendId !== -1 && (
+          {selectedFriend && selectedFriendId !== -1 && (
             <div className="p-4 w-full h-full">
               <img
                 src={selectedFriend.userImgUrl}
@@ -281,7 +280,7 @@ function App() {
 
 
           
-          {selectedGroupId !== -1 && (
+          {selectedGroup &&  selectedGroupId !== -1 && (
             <div className='p-4 w-full h-full bg-zinc-600'>
               <img
                 src={selectedGroup.groupImgUrl}
@@ -295,7 +294,7 @@ function App() {
 
               <div className="mt-4 text-white">
                 <ul>
-                  {selectedGroup.channels.map((channel, index) => (
+                  {selectedGroup !== null && selectedGroup.channels.map((channel, index) => (
                       <li key={index}
                         className={`flex items-center justify-between mb-2 h-8 hover:text-gray-100 rounded-lg hover:bg-zinc-500 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300 shadow-lg ${channel.channelId === selectedChannelId ? 'selected-channel' : ''}`}
                         onClick={() => handleSelectedChannelIdChange(channel.channelId , channel.channelName)}
