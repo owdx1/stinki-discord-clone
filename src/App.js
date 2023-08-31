@@ -2,10 +2,13 @@ import './App.css';
 import SidebarGroups from './sidebar/SidebarGroups';
 import SidebarFriends from './sidebar/SidebarFriends';
 import { useEffect, useState } from 'react';
-import DetailsIcon from '@mui/icons-material/Details';
-import SettingsIcon from '@mui/icons-material/Settings';
+
 import EastIcon from '@mui/icons-material/East';
 import MenuIcon from '@mui/icons-material/Menu';
+import Partipicants from './Partipicants';
+import Information from './Information';
+import SendMessageBox from './SendMessageBox';
+import ConversationBox from './ConversationBox';
 const groups = [
   {   
       groupId:1,
@@ -239,144 +242,22 @@ function App() {
 
 
 
-  useEffect(()=>{
-    console.log('suanki friend' , selectedFriend);
-  },[selectedFriend])
-
-  useEffect(() =>{
-    console.log(selectedChannel);
-  },[selectedChannel])
-
-
   
   return (
     <div className='w-screen h-screen block'>
-      <div className="sidebar-container flex relative">
-        <SidebarGroups className="left-sidebar" selectedGroupId={selectedGroupId} handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
+      <div className="flex relative">
+        <SidebarGroups selectedGroupId={selectedGroupId} handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
         <SidebarFriends selectedFriendId={selectedFriendId} handleSelectedFriendIdChange={handleSelectedFriendIdChange}/>
 
-        <div className='w-64 fixed top-0 left-96 bg-zinc-600 h-full text-white'>
-          
-
-          {selectedFriend && selectedFriendId !== -1 && (
-            <div className="p-4 w-full h-full">
-              <img
-                src={selectedFriend.userImgUrl}
-                alt={selectedFriend.userName}
-                className="w-48 h-48 rounded-lg mx-auto object-cover"
-              />
-              <div className="text-center mt-2">
-                <p className="text-xl">{selectedFriend.userName}</p>
-                <p className='pt-5'>Şu tarihten itibaren üye: 1 Ocak 2023</p>
-              </div>
-              <div className="common-groups bg-zinc-500 w-full h-12 justify-between flex p-2 mt-10">
-                <p className='pl-5 pt-0.5'>2 Ortak Sunucu</p>
-                <MenuIcon className='mt-1 cursor-pointer'/>
-              </div>
-            </div>
-          )}
-                  
-                  
-
-
-          
-          {selectedGroup &&  selectedGroupId !== -1 && (
-            <div className='p-4 w-full h-full bg-zinc-600'>
-              <img
-                src={selectedGroup.groupImgUrl}
-                alt={selectedFriend.groupId}
-                className='w-48 h-48 rounded-lg mx-auto object-cover'
-              />
-
-              <div className="text-center mt-2">
-                <p className="text-xl text-white">{selectedGroup.name}</p>
-              </div>
-
-              <div className="mt-4 text-white">
-                <ul>
-                  {selectedGroup !== null && selectedGroup.channels.map((channel, index) => (
-                      <li key={index}
-                        className={`flex items-center justify-between mb-2 h-8 hover:text-gray-100 rounded-lg hover:bg-zinc-500 cursor-pointer focus:outline-none focus:ring focus:ring-violet-300 shadow-lg ${channel.channelId === selectedChannelId ? 'selected-channel' : ''}`}
-                        onClick={() => handleSelectedChannelIdChange(channel.channelId , channel.channelName)}
-                      >
-                      <div className="flex items-center">
-                        <DetailsIcon className='ml-2'/>
-                        <span 
-                          className='ml-2'
-                          
-                        >
-
-                          {channel.channelName}
-                        </span>
-                      </div>
-                      <SettingsIcon className='mr-2'/>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
-
-        </div>
+        <Information selectedFriend={selectedFriend} selectedGroup={selectedGroup} selectedFriendId={selectedFriendId} selectedGroupId={selectedGroupId} selectedChannel={selectedChannel} selectedChannelId={selectedChannelId} handleSelectedChannelIdChange={handleSelectedChannelIdChange}/>
         
-        {selectedGroupId !== -1 && 
-        (
-
-          <div className='w-72 h-full fixed top-0 right-0 bg-zinc-600'>
-            <div className="sidebar-name  font-extralight text-gray-50 w-full h-4 mt-3">
-                <p className='text-center justify-center m-auto'>Partipicants
-                </p>
-            </div>
-            {selectedGroup.enrolled.map((partipicantId) => {
-              const currentPartipicantArray = allUsers.filter((partipicant) => partipicant.userId === partipicantId);
-              const currentPartipicant = currentPartipicantArray[0];
-            return (
-              <div className='sidebar-icon-participants'>
-                <img 
-                    src={`${currentPartipicant.userImgUrl}`} 
-                    alt={currentPartipicant.userId}
-                    className='w-10 h-10 object-cover rounded-3xl hover:rounded-xl fixed'
-                />
-                <span className='sidebar-tooltip-friends'>
-                  {currentPartipicant.userName}#{currentPartipicant.userId}
-                </span>
-              </div>
-            )})}
-            
-
-          </div>
-
-        )}  
+       <Partipicants selectedGroup={selectedGroup} selectedGroupId={selectedGroupId}/>
+          
       </div>
-      <div className="flex">
-        {selectedChannelId !== -1 && (
-        <div className="message-input fixed bottom-0 w-full p-4 bg-gray rest justify-between flex align-middle ">
-          <input
-            type="text"
-            placeholder={`${selectedChannel} kanalına mesaj gönder...`}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            style={{background:'lightgray'}}
-            
-          />
-          <EastIcon className='mt-2 mr-4 absolute right-4'/>
-        </div>
-        )}
-        {selectedFriendId !== -1 && (
-        <div className="message-input fixed bottom-0 w-full p-4 bg-gray rest justify-between flex align-middle ">
-          <input
-            type="text"
-            placeholder={`${selectedFriend.userName} kullanıcısına mesaj gönder...`}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            style={{background:'lightgray'}}
-            
-          />
-          <EastIcon className='mt-2 mr-4 absolute right-4'/>
-        </div>
-        )}
-
-        
+      <div className="message-container">
+        <ConversationBox/>
+        <SendMessageBox selectedChannelId={selectedChannelId} selectedChannel={selectedChannel} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId}/>
       </div>
-
     </div>
   );
 }
