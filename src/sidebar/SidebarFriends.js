@@ -1,8 +1,8 @@
 import React from 'react'
 import PersonIcon from '@mui/icons-material/Person';
-import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
-
-import { useState } from 'react';
+import SettingsIcon from '@mui/icons-material/Settings';
+//import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+//import { useState } from 'react';
 
 // bu sayfaya arkadaşların bilgisi gelecek, bunun yanı sıra kullanıcı bilgisi de gelmeli
 
@@ -41,14 +41,10 @@ const user = {
 
 }
 
-const SidebarFriends = () => {
-    const [selectedFriendId, setSelectedFriendId] = useState(null)
+const SidebarFriends = ({selectedFriendId , handleSelectedFriendIdChange}) => {
+   
 
-    const handleSelectFriend = (friendId) => {
-        if (selectedFriendId !== friendId){
-            setSelectedFriendId(friendId);
-        }
-    } 
+    
     
 
             
@@ -56,7 +52,7 @@ const SidebarFriends = () => {
     return (
 
         <div className='fixed top-0 left-24 bg-gray-700 w-72 flex flex-col shadow-2xl text-white h-screen'>
-            <div className="siderba-name  font-extralight text-gray-50 w-full h-4 mt-3">
+            <div className="sidebar-name  font-extralight text-gray-50 w-full h-4 mt-3">
                 <p className='text-center justify-center m-auto'>Friends
                 </p>
             </div>
@@ -68,10 +64,10 @@ const SidebarFriends = () => {
                 
                 return (
                     <div className="sidebar-icon-friends group" key={index}
-                        onClick={() => handleSelectFriend(friend.userId)}
+                        onClick={() => handleSelectedFriendIdChange(friend.userId)}
                     
                     >
-                        {selectedFriendId === friend.userId ? <div className="sidebar-selected w-2 h-6 bg-slate-100 right-8 relative rounded-r-3xl"></div> : (<></>) }
+                        {selectedFriendId === friend.userId ? <div className="sidebar-selected w-2 h-6 bg-slate-100 right-4 relative rounded-r-3xl"></div> : (<></>) }
                         { url ? 
 
                             (<img 
@@ -103,6 +99,7 @@ const SidebarFriends = () => {
                             {user.userName}#{user.userId}
                         </span>
                     </div>
+                    <SettingsIcon/>
                 </div>
                 
             </div>

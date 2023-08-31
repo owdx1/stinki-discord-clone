@@ -25,7 +25,7 @@
     my-auto
     mt-6
     mb-6
-    ml-8
+    ml-4
     mr-4
     pr-4
     shadow-lg
@@ -36,6 +36,28 @@
     cursor-pointer
     hover:bg-gray-500
   }
+  .sidebar-icon-participants {
+    @apply 
+    relative 
+    flex 
+    items-center
+    h-8
+    my-auto
+    mt-6
+    mb-6
+    ml-4
+    mr-4
+    pr-4
+    shadow-lg
+    hover:rounded-2xl
+    bg-zinc-600
+    justify-between
+    transition-all
+    cursor-pointer
+    hover:bg-zinc-500
+  
+  }
+
 
   .sidebar-tooltip {
     @apply
@@ -54,13 +76,13 @@
     duration-100
     origin-left
     scale-0
+    
   }
   .sidebar-tooltip-friends {
     @apply
     absolute
     w-auto
-    p-2
-    m-2
+    
     min-w-max
     left-20
     rounded-md
@@ -70,6 +92,7 @@
     duration-100
     origin-left
     font-light
+   
     
   }
 
@@ -78,13 +101,25 @@
     text-cyan-500
     m-0
     p-0
+    transition-all
     
   }
   .friends-main{
     @apply left-6
+    transition-all
   
   }
+
+  .selected-channel {
+    @apply
+    bg-zinc-500
+
+  }
+
+  
 }
+
+
 
 
 body {
@@ -94,9 +129,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 255, 255);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.rest {
+  left:40rem;
+  width:62rem;
+  
 }
