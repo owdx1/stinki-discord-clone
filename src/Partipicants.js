@@ -41,15 +41,15 @@ const allUsers = [
         userImgUrl:'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F09%2Ftw-dc-comics-joker-real-name-reveal-info.jpg?w=960&cbr=1&q=90&fit=max'
     }
   ]
-const Partipicants = ({ selectedGroup , selectedGroupId}) => {
+const Partipicants = ({ selectedGroup , selectedGroupId , selectedFriend, selectedFriendId}) => {
   return (
     <>
     
 
     {selectedGroup && selectedGroupId !== -1 && (
-      <div className='w-72 h-full fixed top-0 right-0 bg-zinc-600'>
-        <div className="sidebar-name  font-extralight text-gray-50 w-full h-4 mt-3">
-            <p className='text-center justify-center m-auto'>Partipicants
+      <div className='w-72 h-full w-full  top-0 right-0 bg-zinc-700 overflow-hidden'>
+        <div className="sidebar-name  font-extralight text-gray-50 w-full h-4">
+            <p className='text-center justify-center m-auto mt-3'>Partipicants
             </p>
         </div>
         {selectedGroup.enrolled.map((partipicantId) => {
@@ -67,6 +67,15 @@ const Partipicants = ({ selectedGroup , selectedGroupId}) => {
             </span>
           </div>
         )})}
+      </div> 
+    )}
+    {selectedFriend && selectedFriend !== -1 && (
+      <div className='w-72 h-full w-full  top-0 right-0 bg-zinc-700 overflow-hidden'>
+        <div className="sidebar-name  font-extralight text-gray-50 w-full h-4">
+            <p className='text-center justify-center m-auto'>Buraya ne koyacağımı bilmiyorum
+            </p>
+        </div>
+        
       </div> 
     )}
   </>

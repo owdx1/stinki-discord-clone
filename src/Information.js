@@ -5,7 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 const Information = ({selectedFriend, selectedFriendId, selectedGroup, selectedGroupId , selectedChannelId , selectedChannel, handleSelectedChannelIdChange}) => {
   return (
-    <div className='w-64 fixed top-0 left-96 bg-zinc-600 h-full text-white'>
+    <div className='w-full top-0 left-96 bg-zinc-600 h-full text-white'>
           
 
         {selectedFriend && selectedFriendId !== -1 && (
@@ -34,7 +34,7 @@ const Information = ({selectedFriend, selectedFriendId, selectedGroup, selectedG
         <div className='p-4 w-full h-full bg-zinc-600'>
             <img
             src={selectedGroup.groupImgUrl}
-            alt={selectedFriend.groupId}
+            alt={selectedGroup.groupId}
             className='w-48 h-48 rounded-lg mx-auto object-cover'
             />
 

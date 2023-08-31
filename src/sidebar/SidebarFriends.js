@@ -43,18 +43,13 @@ const user = {
 
 const SidebarFriends = ({selectedFriendId , handleSelectedFriendIdChange}) => {
    
-
     
-    
-
-            
-
     return (
 
         <div className='fixed top-0 left-24 bg-gray-700 w-72 flex flex-col shadow-2xl text-white h-screen'>
-            <div className="sidebar-name  font-extralight text-gray-50 w-full h-4 mt-3">
-                <p className='text-center justify-center m-auto'>Friends
-                </p>
+            <div className="sidebar-name  font-extralight text-gray-50 w-full h-12 mt-0.5 flex justify-between ">
+                <p className='text-center justify-center ml-10 my-auto align-middle' style={{fontSize:'20px'}}>Friends</p>
+                <p className='mr-7 my-auto' style={{fontSize:'30px'}}> {`<`} </p>
             </div>
             
             <div className=''>

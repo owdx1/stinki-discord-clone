@@ -3,34 +3,33 @@ import EastIcon from '@mui/icons-material/East';
 
 const SendMessageBox = ({selectedChannelId, selectedFriendId, selectedChannel, selectedFriend}) => {
   return (
-    <div className="flex">
-        {selectedChannelId !== -1 && (
-        <div className="message-input fixed bottom-0 w-full p-4 bg-gray rest justify-between flex align-middle ">
-          <input
-            type="text"
-            placeholder={`${selectedChannel} kanalına mesaj gönder...`}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            style={{background:'lightgray'}}
-            
-          />
-          <EastIcon className='mt-2 mr-4 absolute right-4'/>
-        </div>
-        )}
-        {selectedFriendId !== -1 && (
-        <div className="message-input fixed bottom-0 w-full p-4 bg-gray rest justify-between flex align-middle ">
-          <input
-            type="text"
-            placeholder={`${selectedFriend.userName} kullanıcısına mesaj gönder...`}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            style={{background:'lightgray'}}
-            
-          />
-          <EastIcon className='mt-2 mr-4 absolute right-4'/>
-        </div>
-        )}
-
-        
+    <div className="flex-wrap">
+      {selectedChannelId !== -1 && (
+      <div className="message-input w-full flex">
+        <input
+          type="text"
+          placeholder={`${selectedChannel} kanalına mesaj gönder...`}
+          className="p-2 rounded-md w-full"
+          
+          
+        />
+        <EastIcon className='mt-2 mr-4 cursor-pointer'  style={{width:'50px' , height:'40px' , margin:'5px'}}/>
       </div>
+      )}
+      {selectedFriendId !== -1 && (
+      <div className="message-input w-full flex">
+        <input
+          type="text"
+          placeholder={`${selectedFriend.userName} kullanıcısına mesaj gönder...`}
+          className="p-2 rounded-md w-full"
+          
+          
+          
+        />
+        <EastIcon className='cursor-pointer hover:bg-zinc-50 rounded-lg' style={{width:'50px' , height:'40px' , margin:'5px', backgroundColor:'gray', color:'white'}}/>
+      </div>
+      )}
+    </div>
   )
 }
 

@@ -56,21 +56,21 @@ const groups = [
   },
   {
       groupId:3,
-      name:'group_name',
+      name:'group3',
       groupImgUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtsiPSqo0kUGCW_VVRz4kkaLTLfQMFBpxrVg&usqp=CAU',
       enrolled:[1,2,3,4,5,6],
       channels:
       [
         {
-          channelName:"kanal7",
+          channelName:"bkkkos",
           channelId:7
         },
         {
-          channelName:"kanal8",
+          channelName:"keyjkjf",
           channelId:8
         },
         {
-          channelName:"kanal9",
+          channelName:"psdkjkjadsa",
           channelId:9
         },
       
@@ -192,8 +192,8 @@ const allUsers = [
 ]
 
 function App() {
-  const [selectedFriendId, setSelectedFriendId] = useState(null);
-  const [selectedGroupId, setSelectedGroupId] = useState(null);
+  const [selectedFriendId, setSelectedFriendId] = useState(-1);
+  const [selectedGroupId, setSelectedGroupId] = useState(-1);
   const [selectedGroup , setSelectedGroup] = useState(groups[0]);
   const [selectedFriend, setSelectedFriend] = useState({});
   const [selectedChannelId, setSelectedChannelId] = useState(0);
@@ -221,9 +221,12 @@ function App() {
       setSelectedGroupId(newSelectedGroupId);
       const currentGroup = groups.filter((group) => group.groupId === newSelectedGroupId);
       setSelectedGroup(currentGroup[0]);
+
+
       setSelectedFriendId(-1);
       setSelectedChannelId(-1);
       setSelectedChannel(null);
+      setSelectedFriend(null);
       
     }
   }
@@ -244,20 +247,32 @@ function App() {
 
   
   return (
-    <div className='w-screen h-screen block'>
-      <div className="flex relative">
-        <SidebarGroups selectedGroupId={selectedGroupId} handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
-        <SidebarFriends selectedFriendId={selectedFriendId} handleSelectedFriendIdChange={handleSelectedFriendIdChange}/>
+    <div className='flex'>
+      <div className='grid grid-cols-1 md:grid-cols-3  h-screen griddy'>
+        <div className="col-span-1 md:col-span-1 h-full flex">
+          <SidebarGroups selectedGroupId={selectedGroupId} handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
+          <SidebarFriends selectedFriendId={selectedFriendId} handleSelectedFriendIdChange={handleSelectedFriendIdChange}/>
+        </div>
 
-        <Information selectedFriend={selectedFriend} selectedGroup={selectedGroup} selectedFriendId={selectedFriendId} selectedGroupId={selectedGroupId} selectedChannel={selectedChannel} selectedChannelId={selectedChannelId} handleSelectedChannelIdChange={handleSelectedChannelIdChange}/>
+        <div className="col-span-1 md:col-span-1 h-full flex-1">
+          <Information selectedFriend={selectedFriend} selectedGroup={selectedGroup} selectedFriendId={selectedFriendId} selectedGroupId={selectedGroupId} selectedChannel={selectedChannel} selectedChannelId={selectedChannelId} handleSelectedChannelIdChange={handleSelectedChannelIdChange}/>
+        </div>
+
+
+        <div className="col-span-1 md:col-span-1  h-full flex-1">
+          <Partipicants selectedGroup={selectedGroup} selectedGroupId={selectedGroupId} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId}/>
+        </div>
         
-       <Partipicants selectedGroup={selectedGroup} selectedGroupId={selectedGroupId}/>
-          
       </div>
-      <div className="message-container">
-        <ConversationBox/>
-        <SendMessageBox selectedChannelId={selectedChannelId} selectedChannel={selectedChannel} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId}/>
+      <div className="h-full grid grid-rows-1 grid-cols-6 bg-white" style={{ width: '1050px', gridTemplateColumns: '1fr', height:'auto'}}>
+        <div className="col-span-5">
+          <ConversationBox selectedGroup={selectedGroup} selectedFriend={selectedFriend}/>
+        </div>
+        <div className="col-span-1 h-full">
+          <SendMessageBox selectedChannelId={selectedChannelId} selectedChannel={selectedChannel} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId} />
+        </div>
       </div>
+
     </div>
   );
 }
