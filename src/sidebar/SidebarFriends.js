@@ -41,7 +41,11 @@ const user = {
 
 }
 
-const SidebarFriends = ({selectedFriendId , handleSelectedFriendIdChange}) => {
+const SidebarFriends = ({selectedFriendId , handleSelectedFriendIdChange , isUserSettingsOn, setIsUserSettingsOn}) => {
+
+    const handleOpenUserSettings = () => {
+        setIsUserSettingsOn(true);
+    }
    
     
     return (
@@ -94,7 +98,7 @@ const SidebarFriends = ({selectedFriendId , handleSelectedFriendIdChange}) => {
                             {user.userName}#{user.userId}
                         </span>
                     </div>
-                    <SettingsIcon/>
+                    <SettingsIcon onClick={() =>handleOpenUserSettings()}/>
                 </div>
                 
             </div>

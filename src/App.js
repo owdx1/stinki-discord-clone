@@ -9,6 +9,8 @@ import Partipicants from './Partipicants';
 import Information from './Information';
 import SendMessageBox from './SendMessageBox';
 import ConversationBox from './ConversationBox';
+import UserSettings from './UserSettings';
+import RandomUserSettings from './RandomUserSettings';
 const groups = [
   {   
       groupId:1,
@@ -190,6 +192,12 @@ const allUsers = [
       userImgUrl:'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F09%2Ftw-dc-comics-joker-real-name-reveal-info.jpg?w=960&cbr=1&q=90&fit=max'
   }
 ]
+const user = {   
+  userId:6,
+  userName:'currentUser',
+  userImgUrl:'https://img.mensxp.com/media/content/2020/May/Sacrifices-Heath-Ledger-Made-To-Become-The-Joker1400_5eaff53aed896.jpeg'
+
+}
 
 function App() {
   const [selectedFriendId, setSelectedFriendId] = useState(-1);
@@ -198,6 +206,9 @@ function App() {
   const [selectedFriend, setSelectedFriend] = useState({});
   const [selectedChannelId, setSelectedChannelId] = useState(0);
   const [selectedChannel , setSelectedChannel] = useState("");
+  const [isUserSettingsOn, setIsUserSettingsOn] = useState(false);
+  const [isRandomUserSettingsOn, setIsRandomUserSettingsOn] = useState(false); 
+  const [randomUserId , setRandomUserId] = useState(-1);
 
 
   const handleSelectedFriendIdChange = (newSelectedFriendId) =>{
@@ -251,7 +262,7 @@ function App() {
       <div className='grid grid-cols-1 md:grid-cols-3  h-screen griddy'>
         <div className="col-span-1 md:col-span-1 h-full flex">
           <SidebarGroups selectedGroupId={selectedGroupId} handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
-          <SidebarFriends selectedFriendId={selectedFriendId} handleSelectedFriendIdChange={handleSelectedFriendIdChange}/>
+          <SidebarFriends selectedFriendId={selectedFriendId} handleSelectedFriendIdChange={handleSelectedFriendIdChange} isUserSettingsOn={isUserSettingsOn} setIsUserSettingsOn={setIsUserSettingsOn}/>
         </div>
 
         <div className="col-span-1 md:col-span-1 h-full flex-1">
@@ -260,7 +271,7 @@ function App() {
 
 
         <div className="col-span-1 md:col-span-1  h-full flex-1">
-          <Partipicants selectedGroup={selectedGroup} selectedGroupId={selectedGroupId} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId}/>
+          <Partipicants selectedGroup={selectedGroup} selectedGroupId={selectedGroupId} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId} allUsers={allUsers} setRandomUserId={setRandomUserId} setIsRandomUserSettingsOn={setIsRandomUserSettingsOn}/>
         </div>
         
       </div>
@@ -272,6 +283,10 @@ function App() {
           <SendMessageBox selectedChannelId={selectedChannelId} selectedChannel={selectedChannel} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId} />
         </div>
       </div>
+
+      {isUserSettingsOn && <UserSettings setIsUserSettingsOn={setIsUserSettingsOn} isUserSettingsOn={isUserSettingsOn} user={user}/>}
+      {isRandomUserSettingsOn && <RandomUserSettings setIsRandomUserSettingsOn={setIsRandomUserSettingsOn} isRandomUserSettingsOn={isRandomUserSettingsOn} allUsers={allUsers} randomUserId={randomUserId}/>}
+
 
     </div>
   );
