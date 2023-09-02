@@ -2,8 +2,15 @@ import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import DetailsIcon from '@mui/icons-material/Details';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { MainContext, useContext } from './useContext/context';
 
-const Information = ({selectedFriend, selectedFriendId, selectedGroup, selectedGroupId , selectedChannelId , selectedChannel, handleSelectedChannelIdChange}) => {
+const Information = ({handleSelectedChannelIdChange}) => {
+
+    const {selectedFriend , selectedFriendId , selectedGroup , selectedGroupId , selectedChannelId} = useContext(MainContext);
+
+    
+
+
   return (
     <div className='w-full top-0 left-96 bg-zinc-600 h-full text-white'>
           

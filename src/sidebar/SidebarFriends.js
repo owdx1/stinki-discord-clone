@@ -1,10 +1,8 @@
 import React from 'react'
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
-//import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
-//import { useState } from 'react';
+import { MainContext , useContext } from '../useContext/context';
 
-// bu sayfaya arkadaşların bilgisi gelecek, bunun yanı sıra kullanıcı bilgisi de gelmeli
 
 const friends = [
     {   
@@ -41,7 +39,9 @@ const user = {
 
 }
 
-const SidebarFriends = ({selectedFriendId , handleSelectedFriendIdChange , isUserSettingsOn, setIsUserSettingsOn}) => {
+const SidebarFriends = ({handleSelectedFriendIdChange}) => {
+
+    const {selectedFriendId, setIsUserSettingsOn } = useContext(MainContext);
 
     const handleOpenUserSettings = () => {
         setIsUserSettingsOn(true);

@@ -1,16 +1,20 @@
 import './App.css';
 import SidebarGroups from './sidebar/SidebarGroups';
 import SidebarFriends from './sidebar/SidebarFriends';
-import { useEffect, useState } from 'react';
-
-import EastIcon from '@mui/icons-material/East';
-import MenuIcon from '@mui/icons-material/Menu';
+import {useState } from 'react';
 import Partipicants from './Partipicants';
 import Information from './Information';
 import SendMessageBox from './SendMessageBox';
 import ConversationBox from './ConversationBox';
 import UserSettings from './UserSettings';
 import RandomUserSettings from './RandomUserSettings';
+import { MainContext } from './useContext/context';
+
+
+
+
+
+
 const groups = [
   {   
       groupId:1,
@@ -254,41 +258,63 @@ function App() {
     }
   }
 
+  const data = {
+    selectedFriend,
+    selectedFriendId,
+    selectedGroup,
+    selectedGroupId,
+    selectedChannel,
+    selectedChannelId,
+    isUserSettingsOn,
+    setIsUserSettingsOn,
+    isRandomUserSettingsOn,
+    setIsRandomUserSettingsOn,
+    randomUserId,
+    setRandomUserId,
+    allUsers,
+    user,
+    friends,
+    groups
+    
+  }
+
 
 
   
   return (
-    <div className='flex'>
-      <div className='grid grid-cols-1 md:grid-cols-3  h-screen griddy'>
-        <div className="col-span-1 md:col-span-1 h-full flex">
-          <SidebarGroups selectedGroupId={selectedGroupId} handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
-          <SidebarFriends selectedFriendId={selectedFriendId} handleSelectedFriendIdChange={handleSelectedFriendIdChange} isUserSettingsOn={isUserSettingsOn} setIsUserSettingsOn={setIsUserSettingsOn}/>
+    <MainContext.Provider value={data}>
+      <div className='flex'>
+        <div className='grid grid-cols-1 md:grid-cols-3  h-screen griddy'>
+          <div className="col-span-1 md:col-span-1 h-full flex">
+            <SidebarGroups handleSelectedGroupIdChange={handleSelectedGroupIdChange}/>
+            <SidebarFriends  handleSelectedFriendIdChange={handleSelectedFriendIdChange}/>
+          </div>
+
+          <div className="col-span-1 md:col-span-1 h-full flex-1">
+            <Information handleSelectedChannelIdChange={handleSelectedChannelIdChange}/>
+          </div>
+
+
+          <div className="col-span-1 md:col-span-1  h-full flex-1">
+            <Partipicants/>
+          </div>
+          
+        </div>
+        <div className="h-full grid grid-rows-1 grid-cols-6 bg-white" style={{ width: '1050px', gridTemplateColumns: '1fr', height:'auto'}}>
+          <div className="col-span-5">
+            <ConversationBox/>
+          </div>
+          <div className="col-span-1 h-full">
+            <SendMessageBox/>
+          </div>
         </div>
 
-        <div className="col-span-1 md:col-span-1 h-full flex-1">
-          <Information selectedFriend={selectedFriend} selectedGroup={selectedGroup} selectedFriendId={selectedFriendId} selectedGroupId={selectedGroupId} selectedChannel={selectedChannel} selectedChannelId={selectedChannelId} handleSelectedChannelIdChange={handleSelectedChannelIdChange}/>
-        </div>
+        {isUserSettingsOn && <UserSettings/>}
+        {isRandomUserSettingsOn && <RandomUserSettings/>}
 
 
-        <div className="col-span-1 md:col-span-1  h-full flex-1">
-          <Partipicants selectedGroup={selectedGroup} selectedGroupId={selectedGroupId} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId} allUsers={allUsers} setRandomUserId={setRandomUserId} setIsRandomUserSettingsOn={setIsRandomUserSettingsOn}/>
-        </div>
-        
       </div>
-      <div className="h-full grid grid-rows-1 grid-cols-6 bg-white" style={{ width: '1050px', gridTemplateColumns: '1fr', height:'auto'}}>
-        <div className="col-span-5">
-          <ConversationBox selectedGroup={selectedGroup} selectedFriend={selectedFriend}/>
-        </div>
-        <div className="col-span-1 h-full">
-          <SendMessageBox selectedChannelId={selectedChannelId} selectedChannel={selectedChannel} selectedFriend={selectedFriend} selectedFriendId={selectedFriendId} />
-        </div>
-      </div>
-
-      {isUserSettingsOn && <UserSettings setIsUserSettingsOn={setIsUserSettingsOn} isUserSettingsOn={isUserSettingsOn} user={user}/>}
-      {isRandomUserSettingsOn && <RandomUserSettings setIsRandomUserSettingsOn={setIsRandomUserSettingsOn} isRandomUserSettingsOn={isRandomUserSettingsOn} allUsers={allUsers} randomUserId={randomUserId}/>}
-
-
-    </div>
+    </MainContext.Provider>
   );
 }
 

@@ -1,7 +1,12 @@
 import React from 'react'
 import EastIcon from '@mui/icons-material/East';
+import { MainContext, useContext } from './useContext/context';
 
-const SendMessageBox = ({selectedChannelId, selectedFriendId, selectedChannel, selectedFriend}) => {
+const SendMessageBox = () => {
+
+  const {selectedChannelId , selectedFriendId , selectedChannel , selectedFriend} = useContext(MainContext);
+
+
   return (
     <div className="flex-wrap">
       {selectedChannelId !== -1 && (

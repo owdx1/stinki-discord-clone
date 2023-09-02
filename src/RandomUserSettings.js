@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { MainContext, useContext } from './useContext/context';
 
-const RandomUserSettings = ({ isRandomUserSettingsOn , setIsRandomUserSettingsOn , allUsers , randomUserId}) => {
-    const [currentUser , setCurrentUser] = useState({});
+const RandomUserSettings = () => {
+
+  const {allUsers, setIsRandomUserSettingsOn, randomUserId } = useContext(MainContext);
+   
+  
+  const [currentUser , setCurrentUser] = useState({});
 
     
   const closePopup = () => {
@@ -13,7 +18,7 @@ const RandomUserSettings = ({ isRandomUserSettingsOn , setIsRandomUserSettingsOn
     const currentUser = currentUserArray[0];
     setCurrentUser(currentUser);
 
-  } , [randomUserId])
+  } , [randomUserId , allUsers])
 
   
 
@@ -34,7 +39,7 @@ const RandomUserSettings = ({ isRandomUserSettingsOn , setIsRandomUserSettingsOn
         >
             &times;
         </button>
-        <img src={currentUser.userImgUrl} alt="User Image" className="w-32 mx-auto mb-4" />
+        <img src={currentUser.userImgUrl} alt="x" className="w-32 mx-auto mb-4" />
         <h2 className="text-xl font-semibold">{currentUser.userName}</h2>
         <p className="text-gray-500">User ID: {currentUser.userId}</p>
         </div>

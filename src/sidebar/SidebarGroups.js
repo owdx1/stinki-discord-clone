@@ -2,9 +2,7 @@ import React from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import PersonIcon from '@mui/icons-material/Person';
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
-//import { useState } from 'react';
-
-// bu sayfaya grupların bilgisi gelecek, bunun yanı sıra yeni bir grup açma işlemi de buradan gerçekleşecek
+import { MainContext , useContext } from '../useContext/context';
 
 const groups = [
     {   
@@ -39,7 +37,10 @@ const groups = [
     }
   ]
 
-const SidebarGroups = ({selectedGroupId , handleSelectedGroupIdChange}) => {
+const SidebarGroups = ({handleSelectedGroupIdChange}) => {
+
+    
+    const {selectedGroupId} = useContext(MainContext);
     
     
 

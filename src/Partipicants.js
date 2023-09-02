@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { MainContext, useContext } from './useContext/context';
 
-const Partipicants = ({ selectedGroup , selectedGroupId , selectedFriend, selectedFriendId, allUsers , setIsRandomUserSettingsOn , setRandomUserId}) => {
+const Partipicants = () => {
+
+  const {selectedFriend , selectedFriendId , selectedGroup , selectedGroupId, allUsers, setIsRandomUserSettingsOn, setRandomUserId } = useContext(MainContext);
+
   
   const handleParticipantClick = (userId) => {
     setRandomUserId(userId);
@@ -33,8 +37,8 @@ const Partipicants = ({ selectedGroup , selectedGroupId , selectedFriend, select
         )})}
       </div> 
     )}
-    {selectedFriend && selectedFriend !== -1 && (
-      <div className='w-72 h-full w-full  top-0 right-0 bg-zinc-700 overflow-hidden'>
+    {selectedFriend && selectedFriendId !== -1 && (
+      <div className='h-full w-full  top-0 right-0 bg-zinc-700 overflow-hidden'>
         <div className="sidebar-name  font-extralight text-gray-50 w-full h-4">
             <p className='text-center justify-center m-auto'>Buraya ne koyacağımı bilmiyorum
             </p>

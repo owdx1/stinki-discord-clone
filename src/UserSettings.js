@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { MainContext, useContext } from './useContext/context';
 
-const UserSettings = ({ setIsUserSettingsOn , isUserSettingsOn , user}) => {
+const UserSettings = () => {
+
+  const {setIsUserSettingsOn, user} = useContext(MainContext);
 
 
   const closePopup = () => {
@@ -20,7 +22,7 @@ const UserSettings = ({ setIsUserSettingsOn , isUserSettingsOn , user}) => {
         >
             &times;
         </button>
-        <img src={user.userImgUrl} alt="User Image" className="w-32 mx-auto mb-4" />
+        <img src={user.userImgUrl} alt={user.userId} className="w-32 mx-auto mb-4" />
         <h2 className="text-xl font-semibold">{user.userName}</h2>
         <p className="text-gray-500">User ID: {user.userId}</p>
         </div>

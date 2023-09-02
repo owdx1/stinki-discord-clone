@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
+import { MainContext, useContext } from './useContext/context';
 
 const sampleMessagesForGroupChats = [
   {
+    messageId:1,
     content: "selam",
     sentBy: 3,
     sentTime:"16:42",
@@ -10,18 +12,22 @@ const sampleMessagesForGroupChats = [
 
   },
   {
+    messageId:2,
     content: "asppp",
     sentBy: 6,
     sentTime:"16:42",
     sentDate:"August 31th"
 
   },{
+    messageId:3,
     content: "s221",
     sentBy: 4,
     sentTime:"16:42",
     sentDate:"August 31th"
 
-  },{
+  },
+  {
+    messageId:4,
     content: "mesajmesajmesajöesaj",
     sentBy: 6,
     sentTime:"16:42",
@@ -74,7 +80,11 @@ const allUsers = [
 ]
 
 
-const ConversationBox = ({selectedFriend , selectedGroup}) => {
+const ConversationBox = () => {
+
+  const {selectedFriend , selectedGroup} = useContext(MainContext);
+
+
 
   const [currentHeader, setCurrentHeader] = useState("");
 
@@ -106,13 +116,13 @@ const ConversationBox = ({selectedFriend , selectedGroup}) => {
 
 
         return (
-          <li className="flex min-h-24 bg-zinc-600 mt-3 hover:bg-zinc-500">
+          <li className="flex min-h-24 bg-zinc-600 mt-3 hover:bg-zinc-500" alt={messageInfo.messageId}>
             <div className="image-container flex justify-between w-28">
               <img
                 src={url}
                 key={currentUserId}
                 className="w-14 h-14 object-cover rounded-3xl hover:rounded-xl my-auto ml-4 mr-24"
-                alt="User Profile Image"
+                alt={messageInfo.messageId}
               />
             </div>
 
